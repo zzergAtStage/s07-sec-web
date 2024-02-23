@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">>
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
-    <title>Hello World!</title>
+    <title th:text="#{welcome}">Hello world</title>
 </head>
 <body>
-<h1 th:inline="text">Hello <span th:remove="tag" sec:authentication="name">thymeleaf</span>!</h1>
+<h1 th:inline="text">
+    <span th:text="#{greeting}">Hello</span>
+    <span th:remove="tag" sec:authentication="name">thymeleaf</span>!
+</h1>
 <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
+    <input type="submit" th:value="#{button.logout}"/>
 </form>
+<p>
+    <a th:href="@{/international}" th:text="#{lang.change}">Internationalization</a>
+</p>
 </body>
 </html>

@@ -13,6 +13,10 @@ public class MainController {
         return "hello";
     }
 
+    @GetMapping("/international")
+    public String getInternationalPage() {
+        return "thymeleaf/international";
+    }
     @GetMapping("/public-data")
     public String getPublicData(Model model){
         model.addAttribute("sampleMessage", "Just text about pega for unauthenticated users");

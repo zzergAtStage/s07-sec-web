@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1" />
+    <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="internationalization.js"></script>
+</head>
+<body>
+<h1 th:text="#{welcome}"></h1>
+
+<br /><br />
+<span th:text="#{lang.change}"></span>:
+<select id="locales">
+    <option value=""></option>
+    <option value="eng" th:text="#{lang.eng}"></option>
+    <option value="ru" th:text="#{lang.ru}"></option>
+</select>
+
+<p><a th:href="@{/hello}" th:text="#{lang.back}">Back</a></p>
+</body>
+</html>
