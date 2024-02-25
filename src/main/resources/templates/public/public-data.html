@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Public data for unauthorized users</title>
+    <link rel="stylesheet" href="style.css" th:href="@{css/style.css}"/>
+</head>
+<body>
+<header class="light-blue-header">
+<img height="80px" width="80px" th:src="@{img/Conect.webp}" alt="Company Logo">
+</header>
+
+<div class="content-container-public-data">
+    <table>
+        <thead>
+        <tr>
+            <th>Some data</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${sampleMessage}"></td>
+        </tr>
+        <tr>
+            <td th:text="${bankRequisites}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p><a href="home" th:href="@{/}">Back to home page</a></p>
+</div>
+
+</body>
+</html>

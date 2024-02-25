@@ -9,17 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class MainController {
     @GetMapping("/hello")
-    public String mainPage(){
+    public String mainPersonalizedPage(){
         return "hello";
     }
 
+    @GetMapping("/home")
+    public String mainPage(){return "public/home";}
+
     @GetMapping("/international")
     public String getInternationalPage() {
-        return "thymeleaf/international";
+        return "public/thymeleaf/international";
     }
     @GetMapping("/public-data")
     public String getPublicData(Model model){
-        model.addAttribute("sampleMessage", "Just text about pega for unauthenticated users");
-        return "public-data";
+        model.addAttribute("sampleMessage", "Just text about page for unauthenticated users");
+        model.addAttribute("bankRequisites", "Some Bank Name, Some SWIFT code");
+        return "public/public-data";
     }
 }

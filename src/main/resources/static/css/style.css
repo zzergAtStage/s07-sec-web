@@ -1,0 +1,43 @@
+.login-container {
+  width: 300px; /* Adjust width as needed */
+  margin: 50px auto; /* Center the container */
+  border: 1px solid #ccc; /* Add a subtle border */
+  border-radius: 5px; /* Add rounded corners */
+  padding: 20px;
+}
+
+.login-container label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.login-container input[type="submit"] {
+  background-color: #4CAF50; /* Google blue */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login-container input[type="submit"]:hover {
+  background-color: #3e8e41; /* Darker blue on hover */
+}
+.light-blue-header {
+    background-color: #e0f2f1; /* Light blue */
+    padding: 10px 20px;
+}
+
+.content-container-public-data {
+    border: 1px solid #ccc; /* Optional border around the content */
+    padding: 20px;
+    margin: 10px auto; /* Center the content container */
+}
