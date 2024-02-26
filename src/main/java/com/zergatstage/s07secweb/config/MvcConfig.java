@@ -1,4 +1,4 @@
-package com.zergatstage.s07secweb.controller;
+package com.zergatstage.s07secweb.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
