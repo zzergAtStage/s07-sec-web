@@ -26,4 +26,9 @@ public class MainController {
         model.addAttribute("bankRequisites", "Some Bank Name, Some SWIFT code");
         return "public/public-data";
     }
+
+    @GetMapping("/private-data")
+    public String console(){
+        return "console";
+    }
 }

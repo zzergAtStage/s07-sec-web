@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Admin Console</title>
+    <link rel="stylesheet" href="style.css" th:href="@{css/style.css}"/>
+</head>
+<body>
+
+    <div class="console">
+        <div class="input-field">
+            <input type="text" id="console-input" placeholder="Enter command">
+            <button id="submit-button">Submit</button>
+        </div>
+        <div id="console-output"></div>
+    </div>
+
+<script src="script.js" th:src="@{js/script.js}"></script>
+
+</body>
+</html>

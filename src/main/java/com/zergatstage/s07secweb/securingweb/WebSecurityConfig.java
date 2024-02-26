@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -24,6 +27,7 @@ public class WebSecurityConfig {
                                 "/css/**",
                                 "/img/**",
                                 "/public-data").permitAll()
+                        .requestMatchers("/private-data","/console").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
@@ -37,13 +41,18 @@ public class WebSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
+        List<UserDetails> users = new ArrayList<>();
+        users.add(User.withDefaultPasswordEncoder()
                         .username("user")
                         .password("password")
                         .roles("USER")
-                        .build();
+                        .build());
+        users.add(User.withDefaultPasswordEncoder()
+                .username("admin")
+                .password("qaz123")
+                .roles("USER","ADMIN")
+                .build());
 
-        return new InMemoryUserDetailsManager(user);
+        return new InMemoryUserDetailsManager(users);
     }
 }
