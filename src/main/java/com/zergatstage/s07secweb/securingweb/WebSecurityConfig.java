@@ -8,9 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import static com.zergatstage.s07secweb.model.UserRole.ADMIN;
 
 @Configuration
 @EnableWebSecurity
@@ -22,45 +25,29 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/",
                                 "/public/**",
                                 "/css/**",
                                 "/img/**",
-                                "/public-data")
-                        .permitAll()
-                        .requestMatchers("/private-data","/console")
-                        .hasRole("ADMIN")
-                        .anyRequest()
-                        .authenticated()
+                                "/public-data",
+                                "/h2").permitAll()
+                        .requestMatchers("/private-data","/console","/hello")
+                            .hasRole(ADMIN.name())
+                            .anyRequest()
+                            .authenticated()
                 )
-
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .formLogin((form) -> form
                         .loginPage("/login")
+                       // .defaultSuccessUrl("/hello",true)
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll());
 
         return http.build();
     }
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        List<UserDetails> users = new ArrayList<>();
-//        users.add(User.withDefaultPasswordEncoder()
-//                        .username("user")
-//                        .password("password")
-//                        .roles("USER")
-//                        .build());
-//        users.add(User.withDefaultPasswordEncoder()
-//                .username("admin")
-//                .password("qaz123")
-//                .roles("USER","ADMIN")
-//                .build());
-//
-//        return new InMemoryUserDetailsManager(users);
-//    }
 }

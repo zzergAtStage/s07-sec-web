@@ -20,8 +20,8 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    @Value("${mykeys.SECRET_KEY}")
-    private static String SECRET_KEY;
+    @Value("${application.security.jwt.SECRET_KEY}")
+    private  String SECRET_KEY;
     @Value("${application.security.jwt.expiration}")
     private long jwtExpiration;
     @Value("${application.security.jwt.refresh-token.expiration}")
